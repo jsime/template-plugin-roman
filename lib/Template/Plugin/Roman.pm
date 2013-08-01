@@ -1,12 +1,14 @@
 package Template::Plugin::Roman;
 
-use 5.10;
+use v5.10;
 use strict;
 use warnings FATAL => 'all';
 
+use Math::Roman;
+
 =head1 NAME
 
-Template::Plugin::Roman - The great new Template::Plugin::Roman!
+Template::Plugin::Roman
 
 =head1 VERSION
 
@@ -19,48 +21,21 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+This module provides a Template::Toolkit filter plugin for converting Arabic
+numerals into Roman. The actual conversion is performed by Math::Roman. The
+same restrictions imposed by that module are in effect here (4499 is the largest
+"real" Roman number - everything after that will simply have too many 'M's).
 
-Perhaps a little code snippet.
+Using the filter is straightforward (assume that your controller has placed
+C<(localtime)[5]> in a stash key called C<current_year>):
 
-    use Template::Plugin::Roman;
+    [% USE Roman %]
 
-    my $foo = Template::Plugin::Roman->new();
-    ...
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
-
-=head1 SUBROUTINES/METHODS
-
-=head2 function1
-
-=cut
-
-sub function1 {
-}
-
-=head2 function2
-
-=cut
-
-sub function2 {
-}
+    The year is [% current_year | roman %].
 
 =head1 AUTHOR
 
 Jon Sime, C<< <jonsime at gmail.com> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to C<bug-template-plugin-roman at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Template-Plugin-Roman>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
-
 
 =head1 SUPPORT
 
@@ -73,27 +48,17 @@ You can also look for information at:
 
 =over 4
 
-=item * RT: CPAN's request tracker (report bugs here)
+=item * GitHub Repository
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Template-Plugin-Roman>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Template-Plugin-Roman>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Template-Plugin-Roman>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Template-Plugin-Roman/>
+L<https://github.com/jsime/template-plugin-roman>
 
 =back
 
 
 =head1 ACKNOWLEDGEMENTS
 
+This plugin is a pretty thin wrapper around C<Math::Roman> which does
+all the real work of converting numerals.
 
 =head1 LICENSE AND COPYRIGHT
 
@@ -138,4 +103,4 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
 
-1; # End of Template::Plugin::Roman
+1;
