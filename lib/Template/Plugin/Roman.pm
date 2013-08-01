@@ -5,10 +5,13 @@ use strict;
 use warnings FATAL => 'all';
 
 use Math::Roman;
+use Template::Plugin::Filter;
+
+use base qw( Template::Plugin::Filter );
 
 =head1 NAME
 
-Template::Plugin::Roman
+Template::Plugin::Roman - Filter for converting Arabic numerals to Roman
 
 =head1 VERSION
 
@@ -32,6 +35,38 @@ C<(localtime)[5]> in a stash key called C<current_year>):
     [% USE Roman %]
 
     The year is [% current_year | roman %].
+
+=head1 METHODS
+
+=head2 init
+
+Initialize filter object.
+
+=cut
+
+sub init {
+    my ($self) = @_;
+
+    $self->{_DYNAMIC} = 1;
+    $self->install_filter('roman');
+
+    return $self;
+}
+
+=head2 filter
+
+Implement filter.
+
+=cut
+
+sub filter {
+    my ($self, $text) = @_;
+
+    return $text unless $text =~ m{^\d+$}o;
+
+    my $roman = Math::Roman->new($text);
+    return "$roman";
+}
 
 =head1 AUTHOR
 
