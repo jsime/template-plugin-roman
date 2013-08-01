@@ -15,11 +15,11 @@ Template::Plugin::Roman - Filter for converting Arabic numerals to Roman
 
 =head1 VERSION
 
-Version 0.01
+Version 1.0
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '1.0';
 
 
 =head1 SYNOPSIS
