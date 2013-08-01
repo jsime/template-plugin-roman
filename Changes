@@ -1,5 +1,6 @@
 Revision history for Template-Plugin-Roman
 
-0.01    Date/time
-        First version, released on an unsuspecting world.
+0.01    2013-07-31
+        - First version. Basic functionality, hardly deviated
+          from M::B default skeleton.
 
