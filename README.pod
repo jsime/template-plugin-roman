@@ -1,51 +1,65 @@
-Template-Plugin-Roman
+=head1 NAME
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+Template::Plugin::Roman - Filter for converting Arabic numerals to Roman
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+=head1 VERSION
 
+Version 0.01
 
-INSTALLATION
+=head1 SYNOPSIS
 
-To install this module, run the following commands:
+This module provides a Template::Toolkit filter plugin for converting Arabic
+numerals into Roman. The actual conversion is performed by Math::Roman. The
+same restrictions imposed by that module are in effect here (4499 is the largest
+"real" Roman number - everything after that will simply have too many 'M's).
 
-	perl Build.PL
-	./Build
-	./Build test
-	./Build install
+Using the filter is straightforward (assume that your controller has placed
+C<(localtime)[5]> in a stash key called C<current_year>):
 
-SUPPORT AND DOCUMENTATION
+    [% USE Roman %]
 
-After installing, you can find documentation for this module with the
-perldoc command.
+    The year is [% current_year | roman %].
+
+=head1 METHODS
+
+=head2 init
+
+Initialize filter object.
+
+=head2 filter
+
+Implement filter.
+
+=head1 AUTHOR
+
+Jon Sime, C<< <jonsime at gmail.com> >>
+
+=head1 SUPPORT
+
+You can find documentation for this module with the perldoc command.
 
     perldoc Template::Plugin::Roman
 
+
 You can also look for information at:
 
-    RT, CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Template-Plugin-Roman
+=over 4
 
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/Template-Plugin-Roman
+=item * GitHub Repository
 
-    CPAN Ratings
-        http://cpanratings.perl.org/d/Template-Plugin-Roman
+L<https://github.com/jsime/template-plugin-roman>
 
-    Search CPAN
-        http://search.cpan.org/dist/Template-Plugin-Roman/
+=back
 
 
-LICENSE AND COPYRIGHT
+=head1 ACKNOWLEDGEMENTS
 
-Copyright (C) 2013 Jon Sime
+This plugin is a pretty thin wrapper around C<Math::Roman> which does
+all the real work of converting numerals.
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 2013 Jon Sime.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the the Artistic License (2.0). You may obtain a
@@ -82,4 +96,5 @@ YOUR LOCAL LAW. UNLESS REQUIRED BY LAW, NO COPYRIGHT HOLDER OR
 CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR
 CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 
