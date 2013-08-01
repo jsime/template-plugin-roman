@@ -16,7 +16,8 @@ my $builder = Module::Build->new(
         'Test::More' => 0,
     },
     requires => {
-        'Math::Roman'       => '1.07',
+        'Template'    => '2.07',
+        'Math::Roman' => '1.07',
     },
     add_to_cleanup     => [ 'Template-Plugin-Roman-*' ],
     create_makefile_pl => 'traditional',
